@@ -1,0 +1,20 @@
+#find accounts that haven't been used in x days. Replace {days} with x. 
+#Results will be in {output_file} file. Command compares the user directories
+#extracted from ypcat, with the /o/{user} directories that are haven't been 
+#changed in x days (filtered by mtime)
+comm -12 <(ypcat -k passwd | cut -d: -f 6 | sort) <(find /o/* -type d -mtime +{days} 2>/dev/null | grep “^/o/[A-Za-z]*$”) > {output_file} &
+
+
+#searches for the oldest {number} files in the {path} directory. Replace appropriate brackets
+#with desired value. The {} empty bracket should not be replaced 
+find {path} type f -exec ls -l {} \; 2>/dev/null | sort -t” “ -k5 -n -r | head -n {number}
+
+
+#to keep a program running after exiting ssh, stop (ctrl-z) the program
+#then execute either command. Use jobs -l or ps -A to find the pid and job number
+nohup -p [pid] 
+or
+disown -h [job number] 
+
+
+
