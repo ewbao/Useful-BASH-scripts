@@ -16,11 +16,11 @@ nohup -p [pid]
 or
 disown -h [job number] 
 
-#find executables created/edited n1 to n2 minutes ago, where n1 is the smaller number
+#find executables created/changed n1 to n2 minutes ago, where n1 is the smaller number
 find / -executable -type f -cmin +n1 -cmin -n2 2>/dev/null
-#find executables created/edited d1 to d2 days ago, where d1 is the smaller number
+#find executables created/changed d1 to d2 days ago, where d1 is the smaller number
 find / -executable -type f -ctime +d1 -ctime -d2 2>/dev/null
-#example: find executables created/edited less than an hour ago:
+#example: find executables created/changed less than an hour ago:
 find / -executable -type f -cmin -60 2>/dev/null
-#example: find executables created/edited today, more than an hour ago
+#example: find executables created/changed today, more than an hour ago
 find / -executable -type f -ctime -1 -cmin +60 2>/dev/null
